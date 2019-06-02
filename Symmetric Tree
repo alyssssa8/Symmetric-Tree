@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+       if (!root) return true;
+       return dfs(root->left,root->right);   
+    }
+    
+    bool dfs(TreeNode* left,TreeNode* right){
+        if (left==NULL && right == NULL){
+            return true;
+        }
+        if (left==NULL || right == NULL){
+            return false;
+        }
+        int leftR  = dfs(left->left, right->right);
+        int rightR = dfs(left->right, right->left);
+        return leftR && rightR &&left->val == right->val;
+    }
+    
+};
